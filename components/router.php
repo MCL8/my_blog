@@ -24,11 +24,18 @@ Class Router
 
 		foreach ($this->routes as $uriPattern => $path) {
 			if (preg_match("~$uriPattern~", $uri)){
-				$segments = explode('/', $path);
+
+			    $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
+
+			    echo '<br><br>Нужно сформировать ' . $internalRoute;
+
+				$segments = explode('/', $internalRoute);
 
 				$controllerName = ucfirst(array_shift($segments)) . 'Controller';
 
 				$actionName = 'action' . ucfirst(array_shift($segments));
+
+				$parameters = $segments;
 
 				$controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
 
@@ -37,7 +44,9 @@ Class Router
 				}
 
 				$controllerObject = new $controllerName;
-				$result = $controllerObject->$actionName();
+
+				$result = call_user_func_array(array($controllerObject, $actionName), $parameters);
+
 				if ($result != null) {
 					break;
 				}
