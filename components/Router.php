@@ -27,8 +27,6 @@ Class Router
 
 			    $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
 
-			    echo '<br><br>Нужно сформировать ' . $internalRoute;
-
 				$segments = explode('/', $internalRoute);
 
 				$controllerName = ucfirst(array_shift($segments)) . 'Controller';
