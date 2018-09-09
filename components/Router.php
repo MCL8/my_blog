@@ -2,7 +2,7 @@
 
 Class Router
 {
-	private $routers;
+	private $routes;
 
 	public function __construct()
 	{
@@ -23,8 +23,8 @@ Class Router
 		$uri = $this->getURI();
 
 		foreach ($this->routes as $uriPattern => $path) {
-			if (preg_match("~$uriPattern~", $uri)){
 
+			if (preg_match("~$uriPattern~", $uri)){
 			    $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
 
 				$segments = explode('/', $internalRoute);
@@ -37,6 +37,7 @@ Class Router
 
 				$controllerFile = ROOT . '/controllers/' . $controllerName . '.php';
 
+
 				if (file_exists($controllerFile)) {
 					include_once($controllerFile);
 				}
@@ -46,6 +47,7 @@ Class Router
 				$result = call_user_func_array(array($controllerObject, $actionName), $parameters);
 
 				if ($result != null) {
+				    echo '!!!';
 					break;
 				}
 			}

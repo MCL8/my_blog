@@ -38,16 +38,15 @@ class User
     {
         $db = DB::getConnection();
 
-        $sql = 'SELECT * FROM users WHERE email = :email AND password = :password';
+        $sql = 'SELECT * FROM users WHERE email = :email';
 
         $queryResult = $db->prepare($sql);
         $queryResult->bindParam(':email', $email, PDO::PARAM_INT);
-        $queryResult->bindParam(':password', $password, PDO::PARAM_INT);
         $queryResult->execute();
 
         $user = $queryResult->fetch();
 
-        if ($user) {
+        if ($user && password_verify($password, $user['password'])) {
             return $user['id'];
         }
         return false;
@@ -118,7 +117,7 @@ class User
     {
         $db = Db::getConnection();
 
-        $sql = 'SELECT * FROM user WHERE id = :id';
+        $sql = 'SELECT * FROM users WHERE id = :id';
 
         $queryResult = $db->prepare($sql);
         $queryResult->bindParam(':id', $id, PDO::PARAM_INT);

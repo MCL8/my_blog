@@ -6,17 +6,9 @@ class Category
     {
         $db = DB::getConnection();
 
-        $query_result = $db->query('SELECT id, name FROM categories');
+        $queryResult = $db->query('SELECT id, name FROM categories');
 
-        $i = 0;
-        $categoriesList = array();
-        while ($row = $query_result->fetch()) {
-            $categoriesList[$i]['id'] = $row['id'];
-            $categoriesList[$i]['name'] = $row['name'];
-            $i++;
-        }
-        return $categoriesList;
-
+        return $queryResult->fetchAll();
     }
 
     public static function getCategoryById($id)

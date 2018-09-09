@@ -10,7 +10,7 @@ class News
 
             $db = DB::getConnection();
 
-            $result = $db->query('SELECT * FROM news WHERE id=' . $id);
+            $result = $db->query('SELECT * FROM site WHERE id=' . $id);
 
             $newsItem = $result->fetch();
 
@@ -25,7 +25,7 @@ class News
         $newsList = array();
 
         $result = $db->query('SELECT id, title, date, short_content '
-            . 'FROM news '
+            . 'FROM site '
             . 'ORDER BY date DESC '
             . 'LIMIT 10');
 

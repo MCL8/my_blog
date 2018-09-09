@@ -22,7 +22,7 @@ Class Article
 
     public static function getArticlesList($count = self::ARTICLES_LIMIT, $orderby = "id")
     {
-        $orders = array("id", "views_count");
+        $orders = array("id", "views_count", "rating");
         $key = array_search($orderby, $orders);
 
         if ($key) {
@@ -33,8 +33,6 @@ Class Article
 
         $db = DB::getConnection();
 
-        $articlesList = array();
-
         $sql = 'SELECT id, title, preview_text, category_id, pubdate '
             . 'FROM articles '
             . 'ORDER BY ' . $order . ' DESC '
@@ -42,30 +40,12 @@ Class Article
 
 
         $queryResult = $db->prepare($sql);
-        //$queryResult->bindParam(':orderby', $orderby, PDO::PARAM_STR);
         $queryResult->bindParam(':count', $count, PDO::PARAM_INT);
         $queryResult->execute();
 
         $categories = Category::getCategoriesList();
 
         $i = 0;
-
-        /*while ($row = $queryResult->fetch()) {
-            $articlesList[$i]['id'] = $row['id'];
-            $articlesList[$i]['title'] = $row['title'];
-            $articlesList[$i]['preview_text'] = $row['preview_text'];
-            $articlesList[$i]['category_id'] = $row['category_id'];
-            $articlesList[$i]['pubdate'] = $row['pubdate'];
-            $articlesList[$i]['category_id'] = 'Other';
-
-            foreach ($categories as $cat){
-                if ($cat['id'] == $row['category_id']){
-                    $articlesList[$i]['category_name'] = $cat['name'];
-                    break;
-                }
-            }
-            $i++;
-        }*/
 
         $articlesList = $queryResult->fetchAll();
 
@@ -90,9 +70,12 @@ Class Article
         $row = $resultCount->fetch();
         $rowCount = reset($row);
 
+        $randomArray = self::getRandomArray($count, $rowCount-1);
+        print_r($randomArray);
+
         $sql = array();
-        while (count($sql) < $count) {
-            $sql[] = '(SELECT * FROM articles LIMIT ' . rand(0 , $rowCount) . ', 1)';
+        foreach ($randomArray as $offset) {
+            $sql[] = '(SELECT id, title, pubdate FROM articles LIMIT ' . $offset . ', 1)';
         }
         $sql = implode(' UNION ', $sql);
 
@@ -114,5 +97,35 @@ Class Article
         }
 
         return $path . $noImage;
+    }
+
+    private static function getRandomArray($count, $range) {
+
+        if ($count >= $range) {
+
+            $arr = range(0, $range);
+            return shuffle($arr);
+        }
+
+        $randomArray = array();
+
+        if ($count < $range%2) {
+
+            while (count($randomArray) < $count) {
+                $rnd = rand(0, $range );
+                if (!in_array($rnd, $randomArray)) {
+                    $randomArray[] = $rnd;
+                }
+            }
+        } else {
+            $arr = range(0, $range);
+            while (count($arr) > $count) {
+                $index = rand(0, count($arr));
+                array_slice($arr, $index, 1);
+            }
+
+            return shuffle($arr);
+        }
+        return $randomArray;
     }
 }
