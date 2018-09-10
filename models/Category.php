@@ -15,7 +15,7 @@ class Category
     {
         $db = DB::getConnection();
 
-        $sql = 'SELECT * FROM categories WHERE id = :id';
+        $sql = 'SELECT * FROM categories WHERE id=:id';
 
         $query_result = $db->prepare($sql);
         $query_result->bindParam(':id', $id, PDO::PARAM_INT);
@@ -23,6 +23,5 @@ class Category
         $query_result->execute();
 
         return $query_result->fetch();
-
     }
 }

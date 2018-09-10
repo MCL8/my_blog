@@ -89,6 +89,7 @@ main{
 .articles-block{
 	background: #fff;
 	margin-bottom: 40px;
+	padding-bottom: 30px;
 }
 .articles-block h1{
 	padding: 30px 30px 10px 30px;
@@ -252,6 +253,62 @@ footer .header__logo{
 }
 .user-form input[type="text"], input[type="email"], input[type="password"]{
 	width: 360px;
+}
+.category-content{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.category-content article{
+	width: 43%;
+}
+
+
+
+
+.pagination {
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 25px;
+	margin-top: 0;
+	padding-left: 30px;
+}
+
+.pagination  li:first-child  a, .pagination  li:first-child  span {
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	margin-left: 0;
+}
+
+.pagination  li:last-child  a, .pagination  li:last-child  span {
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.pagination  .active  a, .pagination  .active  span, .pagination  .active  a:hover, .pagination  .active  span:hover, .pagination  .active  a:focus, .pagination  .active  span:focus {
+	background-color: #434e7b;
+	border-color: #434e7b;
+	color: #fff;
+	cursor: default;
+	z-index: 2;
+}
+
+.pagination  li  a, .pagination  li  span {
+	background-color: #f0f0e9;
+	border: 0;
+	float: left;
+	line-height: 1.42857;
+	margin-left: -1px;
+	padding: 6px 12px;
+	position: relative;
+	text-decoration: none;
+	margin-right: 5px;
+	color:#000;
+}
+
+.pagination  li  a:hover{
+	background:#434e7b;
+	color:#fff;
 }
 
 

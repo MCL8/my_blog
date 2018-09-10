@@ -21,6 +21,8 @@ class ArticleController
         $article = Article::getArticleById($article_id);
         $commentsList = Comment::getCommentsList($article_id);
 
+        Article::increaseViews($article_id);
+
         require_once(ROOT . '/views/article/index.php');
 
         return true;

@@ -31,7 +31,10 @@
             <nav>
                 <ul>
                     <?php foreach (Category::getCategoriesList() as $category): ?>
-                        <li><a href="#"><?php echo $category['name']; ?></a></li>
+                        <li><a href="/category/<?php echo $category['id']; ?>">
+                                <?php echo $category['name']; ?>
+                            </a>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </nav>
