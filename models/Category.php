@@ -24,4 +24,41 @@ class Category
 
         return $query_result->fetch();
     }
+
+    public static function createCategory($name)
+    {
+        $db = DB::getConnection();
+
+        $sql = 'INSERT INTO categories (name) VALUES (:name)';
+
+        $queryResult = $db->prepare($sql);
+        $queryResult->bindParam(':name', $name, PDO::PARAM_STR);
+
+        return $queryResult->execute();
+    }
+
+    public static function updateCategory($id, $name)
+    {
+        $db = Db::getConnection();
+
+        $sql = 'UPDATE categories SET name = :name WHERE id = :id';
+
+        $queryResult = $db->prepare($sql);
+        $queryResult->bindParam(':id',$id, PDO::PARAM_INT);
+        $queryResult->bindParam(':name', $name, PDO::PARAM_STR);
+
+        return $queryResult->execute();
+    }
+
+    public static function deleteCategory($id)
+    {
+        $db = DB::getConnection();
+
+        $sql = 'DELETE FROM categories WHERE id = :id';
+
+        $queryResult = $db->prepare($sql);
+        $queryResult->bindParam(':id',$id, PDO::PARAM_INT);
+
+        return $queryResult->execute();
+    }
 }

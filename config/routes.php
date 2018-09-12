@@ -11,5 +11,17 @@ return array(
     'user/login' => 'user/login',
     'user/logout' => 'user/logout',
 
+    'admin/article/create' => 'adminArticle/create',
+    'admin/article/update/([0-9]+)' => 'adminArticle/update/$1',
+    'admin/article/delete/([0-9]+)' => 'adminArticle/delete/$1',
+    'admin/article' => 'adminArticle/index',
+
+    'admin/category/create' => 'adminCategory/create',
+    'admin/category/update/([0-9]+)' => 'adminCategory/update/$1',
+    'admin/category/delete/([0-9]+)' => 'adminCategory/delete/$1',
+    'admin/category' => 'adminCategory/index',
+
+    'admin' => 'admin/index',
+
     '' => 'site/index',
 );

@@ -44,21 +44,26 @@ Class Article
         $queryResult->bindParam(':limit', $limit, PDO::PARAM_INT);
         $queryResult->execute();
 
-        $categories = Category::getCategoriesList();
+        $articlesList = $queryResult->fetchAll();
 
-        $i = 0;
+        self::getCategoriesName($articlesList);
+
+        return $articlesList;
+    }
+
+    public static function getArticlesListAdmin()
+    {
+        $db = DB::getConnection();
+
+        $sql = 'SELECT id, title, category_id ' .
+               'FROM articles ' .
+               'ORDER BY id DESC';
+
+        $queryResult = $db->query($sql);
 
         $articlesList = $queryResult->fetchAll();
 
-        foreach ($articlesList as $row) {
-            foreach ($categories as $cat){
-                if ($cat['id'] == $row['category_id']){
-                    $articlesList[$i]['category_name'] = $cat['name'];
-                    break;
-                }
-            }
-            $i++;
-        }
+        self::getCategoriesName($articlesList);
 
         return $articlesList;
     }
@@ -106,6 +111,56 @@ Class Article
         return $result->fetchAll();
     }
 
+    public static function createArticle($post_data)
+    {
+        $db = DB::getConnection();
+
+        $sql = 'INSERT INTO articles ' .
+               '(title, category_id, preview_text, content) ' .
+               'VALUES (:title, :category_id, :preview_text, :content)';
+
+        $queryResult = $db->prepare($sql);
+        $queryResult->bindParam(':title', $post_data['title'], PDO::PARAM_STR);
+        $queryResult->bindParam(':category_id', $post_data['category_id'], PDO::PARAM_INT);
+        $queryResult->bindParam(':preview_text', $post_data['preview_text'], PDO::PARAM_STR);
+        $queryResult->bindParam(':content', $post_data['content'], PDO::PARAM_STR);
+
+        if($queryResult->execute()) {
+            return $db->lastInsertId();
+        }
+        return 0;
+    }
+
+    public static function updateArticle($id, $post_data)
+    {
+        $db = DB::getConnection();
+
+        $sql = 'UPDATE articles ' .
+               'SET title = :title, category_id = :category_id, preview_text = :preview_text, content =  :content ' .
+               'WHERE id = :id';
+
+        $queryResult = $db->prepare($sql);
+        $queryResult->bindParam(':id', $id, PDO::PARAM_STR);
+        $queryResult->bindParam(':title', $post_data['title'], PDO::PARAM_STR);
+        $queryResult->bindParam(':category_id', $post_data['category_id'], PDO::PARAM_INT);
+        $queryResult->bindParam(':preview_text', $post_data['preview_text'], PDO::PARAM_STR);
+        $queryResult->bindParam(':content', $post_data['content'], PDO::PARAM_STR);
+
+        return $queryResult->execute();
+    }
+
+    public static function deleteArticle($id)
+    {
+        $db = DB::getConnection();
+
+        $sql = 'DELETE FROM articles WHERE id = :id';
+
+        $queryResult = $db->prepare($sql);
+        $queryResult->bindParam(':id', $id, PDO::PARAM_STR);
+
+        return $queryResult->execute();
+    }
+
     public static function getImage($id)
     {
         $noImage = 'noimage.png';
@@ -148,6 +203,21 @@ Class Article
 
         $row = $queryResult->fetch();
         return $row['count'];
+    }
+
+    private static function getCategoriesName(&$articlesList)
+    {
+        $i = 0;
+        $categories = Category::getCategoriesList();
+        foreach ($articlesList as $row) {
+            foreach ($categories as $cat){
+                if ($cat['id'] == $row['category_id']){
+                    $articlesList[$i]['category_name'] = $cat['name'];
+                    break;
+                }
+            }
+            $i++;
+        }
     }
 
     private static function getRandomArray($count, $range) {
