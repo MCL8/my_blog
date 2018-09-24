@@ -20,6 +20,9 @@ li{
 a{
 	text-decoration: none;
 }
+.text-center{
+	text-align: center;
+}
 .wrapper {
 	display: flex;
 	flex-direction: column;
@@ -27,6 +30,9 @@ a{
 }
 .content {
 	flex: 1 0 auto;
+}
+.center{
+	margin: 0 auto;
 }
 .header__top{
 	width: 100%;
@@ -83,31 +89,45 @@ a{
 }
 
 main{
-	margin-top: 40px;
+	margin-top: 25px;
 }
 
 .articles-block{
 	background: #fff;
-	margin-bottom: 40px;
-	padding-bottom: 30px;
+	padding: 40px 0;
+	margin-bottom: 50px;
 }
 .articles-block h1{
-	padding: 30px 30px 10px 30px;
 	font-size: 28px;
+	padding-bottom: 50px;
+	padding-left: 20px
 }
 .articles__content{
-	display: flex;
+	display: block;
 	justify-content: space-between;
 }
+.articles__content::before{
+	display: table;
+	content: "";
+	box-sizing: border-box;
+}
+.articles__content::after{
+	display: table;
+	content: "";
+	clear: both;
+	box-sizing: border-box;
+}
 .article{
-	margin: 0 25px;
+	float: left;
+	width: calc(100% / 3 - 40px);
+	padding: 0 20px;
 }
 .article img{
-	margin: 30px 0;
+	max-width: 100%;
 }
 .article h1{
 	font-size: 24px;
-	padding-bottom: 20px;
+	padding: 20px 0;
 }
 .article small{
 	font-size: 14px;
@@ -120,7 +140,7 @@ main{
 	color: #434e7b;
 }
 .article p{
-	padding: 20px 0 40px 0;
+	padding-top: 20px;
 }
 .article__category a{
 	color: #777;
@@ -265,12 +285,11 @@ footer .header__logo{
 
 
 
-
 .pagination {
 	display: flex;
 	justify-content: flex-start;
 	margin-bottom: 25px;
-	margin-top: 0;
+	margin-top: 20px;
 	padding-left: 30px;
 }
 

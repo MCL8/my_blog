@@ -21,7 +21,7 @@ Class Article
         }
     }
 
-    public static function getArticlesList($limit = self::ARTICLES_LIMIT, $orderby = "id")
+    public static function getArticlesList($limit = self::ARTICLES_LIMIT, $orderby = "id", $offset = 0)
     {
         $orders = array("id", "views_count", "rating");
         $key = array_search($orderby, $orders);
@@ -34,14 +34,16 @@ Class Article
 
         $db = DB::getConnection();
 
-        $sql = 'SELECT id, title, preview_text, category_id, pubdate '
-            . 'FROM articles '
-            . 'ORDER BY ' . $order . ' DESC '
-            . 'LIMIT :limit';
+        $sql = 'SELECT id, title, preview_text, category_id, pubdate ' .
+             'FROM articles ' .
+             'ORDER BY ' . $order . ' DESC ' .
+             'LIMIT :limit ' .
+             'OFFSET :offset';
 
 
         $queryResult = $db->prepare($sql);
         $queryResult->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $queryResult->bindParam(':offset', $offset, PDO::PARAM_INT);
         $queryResult->execute();
 
         $articlesList = $queryResult->fetchAll();

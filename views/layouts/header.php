@@ -5,6 +5,7 @@
     <title>My Blog</title>
     <link rel="stylesheet" href="/template/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="/template/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <header>

@@ -1,2 +1,4 @@
-.idea/*
-__HTML__/*
+.idea/
+__HTML__/
+upload/
+vendor/

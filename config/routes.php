@@ -23,5 +23,7 @@ return array(
 
     'admin' => 'admin/index',
 
+    'ajax/load' => 'ajax/load',
+
     '' => 'site/index',
 );
