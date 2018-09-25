@@ -2,6 +2,9 @@
 
 abstract  class AdminBase
 {
+    /**
+     * @return bool
+     */
     public static function checkAdmin()
     {
         $user_id = User::checkLogged();

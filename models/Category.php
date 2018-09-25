@@ -2,6 +2,10 @@
 
 class Category
 {
+
+    /**
+     * @return array
+     */
     public static function getCategoriesList()
     {
         $db = DB::getConnection();
@@ -11,6 +15,10 @@ class Category
         return $queryResult->fetchAll();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public static function getCategoryById($id)
     {
         $db = DB::getConnection();
@@ -25,6 +33,10 @@ class Category
         return $query_result->fetch();
     }
 
+    /**
+     * @param $name
+     * @return bool
+     */
     public static function createCategory($name)
     {
         $db = DB::getConnection();
@@ -37,6 +49,11 @@ class Category
         return $queryResult->execute();
     }
 
+    /**
+     * @param $id
+     * @param $name
+     * @return bool
+     */
     public static function updateCategory($id, $name)
     {
         $db = Db::getConnection();
@@ -50,6 +67,10 @@ class Category
         return $queryResult->execute();
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public static function deleteCategory($id)
     {
         $db = DB::getConnection();

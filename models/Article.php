@@ -5,6 +5,10 @@ Class Article
     const ARTICLES_LIMIT = 3;
     const SHOW_IN_CATEGORY = 2;
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public static function getArticleById($id)
     {
         $id = intval($id);
@@ -21,6 +25,12 @@ Class Article
         }
     }
 
+    /**
+     * @param int $limit
+     * @param string $orderby
+     * @param int $offset
+     * @return array
+     */
     public static function getArticlesList($limit = self::ARTICLES_LIMIT, $orderby = "id", $offset = 0)
     {
         $orders = array("id", "views_count", "rating");
@@ -53,6 +63,9 @@ Class Article
         return $articlesList;
     }
 
+    /**
+     * @return array
+     */
     public static function getArticlesListAdmin()
     {
         $db = DB::getConnection();
@@ -70,6 +83,11 @@ Class Article
         return $articlesList;
     }
 
+    /**
+     * @param $category_id
+     * @param int $page
+     * @return array
+     */
     public static function getArticlesListByCategoryId($category_id, $page = 1)
     {
         $limit = self::SHOW_IN_CATEGORY;
@@ -92,6 +110,10 @@ Class Article
 
     }
 
+    /**
+     * @param int $count
+     * @return array
+     */
     public static function getRandomList($count = self::ARTICLES_LIMIT)
     {
         $db = DB::getConnection();
@@ -113,6 +135,10 @@ Class Article
         return $result->fetchAll();
     }
 
+    /**
+     * @param $post_data
+     * @return int|string
+     */
     public static function createArticle($post_data)
     {
         $db = DB::getConnection();
@@ -133,6 +159,11 @@ Class Article
         return 0;
     }
 
+    /**
+     * @param $id
+     * @param $post_data
+     * @return bool
+     */
     public static function updateArticle($id, $post_data)
     {
         $db = DB::getConnection();
@@ -151,6 +182,10 @@ Class Article
         return $queryResult->execute();
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public static function deleteArticle($id)
     {
         $db = DB::getConnection();
@@ -163,6 +198,10 @@ Class Article
         return $queryResult->execute();
     }
 
+    /**
+     * @param $id
+     * @return string
+     */
     public static function getImage($id)
     {
         $noImage = 'noimage.png';
@@ -178,6 +217,10 @@ Class Article
         return $path . $noImage;
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public static function increaseViews($id)
     {
         $db = DB::getConnection();
@@ -193,6 +236,10 @@ Class Article
         return true;
     }
 
+    /**
+     * @param $category_id
+     * @return mixed
+     */
     public static function getArticlesCountInCategory($category_id)
     {
         $db = DB::getConnection();
@@ -207,6 +254,9 @@ Class Article
         return $row['count'];
     }
 
+    /**
+     * @param $articlesList
+     */
     private static function getCategoriesName(&$articlesList)
     {
         $i = 0;
@@ -222,6 +272,11 @@ Class Article
         }
     }
 
+    /**
+     * @param $count
+     * @param $range
+     * @return array|bool
+     */
     private static function getRandomArray($count, $range) {
 
         if (($count <= 0) || ($range <= 0)) {

@@ -2,6 +2,10 @@
 
 class ArticleController
 {
+    /**
+     * @param $article_id
+     * @return bool
+     */
     public function actionShow($article_id)
     {
         if (isset($_POST['submit'])) {

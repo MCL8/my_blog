@@ -2,6 +2,9 @@
 
 class UserController
 {
+    /**
+     * @return bool
+     */
     public function actionRegister()
     {
         $name = false;
@@ -38,6 +41,9 @@ class UserController
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function actionLogin()
     {
         $email = false;
@@ -73,10 +79,7 @@ class UserController
 
     public function actionLogout()
     {
-        //session_start();
-
         unset($_SESSION['user']);
-
         header("Location: /");
     }
 }

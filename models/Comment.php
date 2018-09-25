@@ -2,6 +2,11 @@
 
 class Comment
 {
+
+    /**
+     * @param $article_id
+     * @return array
+     */
     public static function getCommentsList($article_id)
     {
         $article_id = intval($article_id);
@@ -13,6 +18,13 @@ class Comment
         return $queryResult->fetchAll();
     }
 
+    /**
+     * @param $article_id
+     * @param $author_name
+     * @param $email
+     * @param $comment_text
+     * @return bool
+     */
     public static function addComment($article_id, $author_name, $email, $comment_text)
     {
         if (strlen($comment_text) > 0) {

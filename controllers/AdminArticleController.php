@@ -2,6 +2,9 @@
 
 class AdminArticleController extends AdminBase
 {
+    /**
+     * @return bool
+     */
     public function actionIndex()
     {
         self::checkAdmin();
@@ -12,6 +15,9 @@ class AdminArticleController extends AdminBase
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function actionCreate()
     {
         self::checkAdmin();
@@ -50,6 +56,10 @@ class AdminArticleController extends AdminBase
         return true;
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public function actionUpdate($id)
     {
         self::checkAdmin();
@@ -89,6 +99,10 @@ class AdminArticleController extends AdminBase
         return true;
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public function actionDelete($id)
     {
         self::checkAdmin();

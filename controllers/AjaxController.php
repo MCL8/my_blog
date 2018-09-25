@@ -2,6 +2,9 @@
 
 class AjaxController
 {
+    /**
+     * @return bool
+     */
     public function actionLoad()
     {
         if (isset($_POST['offset']) && isset($_POST['block_id'])) {

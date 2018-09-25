@@ -2,6 +2,12 @@
 
 class User
 {
+    /**
+     * @param $name
+     * @param $email
+     * @param $password
+     * @return bool
+     */
     public static function register($name, $email, $password)
     {
         $db = DB::getConnection();
@@ -17,6 +23,12 @@ class User
         return $queryResult->execute();
     }
 
+    /**
+     * @param $id
+     * @param $name
+     * @param $password
+     * @return bool
+     */
     public static function edit($id, $name, $password)
     {
         $db = DB::getConnection();
@@ -34,6 +46,11 @@ class User
         return $queryResult->execute();
     }
 
+    /**
+     * @param $email
+     * @param $password
+     * @return bool
+     */
     public static function checkUserData($email, $password)
     {
         $db = DB::getConnection();
@@ -52,11 +69,17 @@ class User
         return false;
     }
 
+    /**
+     * @param $userId
+     */
     public static function auth($userId)
     {
         $_SESSION['user'] = $userId;
     }
 
+    /**
+     * @return mixed
+     */
     public static function checkLogged()
     {
         if (isset($_SESSION['user'])) {
@@ -65,6 +88,9 @@ class User
         header("Location: /user/login");
     }
 
+    /**
+     * @return bool
+     */
     public static function isGuest()
     {
         if (isset($_SESSION['user'])) {
@@ -73,6 +99,10 @@ class User
         return true;
     }
 
+    /**
+     * @param $name
+     * @return bool
+     */
     public static function checkName($name)
     {
         if (strlen($name) >= 2) {
@@ -81,6 +111,10 @@ class User
         return false;
     }
 
+    /**
+     * @param $password
+     * @return bool
+     */
     public static function checkPassword($password)
     {
         if (strlen($password) >= 6) {
@@ -89,6 +123,10 @@ class User
         return false;
     }
 
+    /**
+     * @param $email
+     * @return bool
+     */
     public static function checkEmail($email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -97,6 +135,10 @@ class User
         return false;
     }
 
+    /**
+     * @param $email
+     * @return bool
+     */
     public static function checkEmailExists($email)
     {
         $db = Db::getConnection();
@@ -113,6 +155,10 @@ class User
         return false;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public static function getUserById($id)
     {
         $db = Db::getConnection();

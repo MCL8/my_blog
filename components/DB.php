@@ -4,6 +4,9 @@ require_once ROOT . '/config/db_params.php';
 
 class DB{
 
+    /**
+     * @return PDO
+     */
     public static function getConnection()
     {
         $paramsPath = ROOT . '/config/db_params.php';

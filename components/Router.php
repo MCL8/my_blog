@@ -4,12 +4,18 @@ Class Router
 {
 	private $routes;
 
+    /**
+     * Router constructor.
+     */
 	public function __construct()
 	{
 		$routesPath = ROOT . '/config/routes.php';
 		$this->routes = include($routesPath);
 	}
 
+    /**
+     * @return string
+     */
 	private function getURI()
 	{
 		if (!empty($_SERVER['REQUEST_URI'])) {
@@ -17,6 +23,9 @@ Class Router
 		}
 	}
 
+    /**
+     * @return bool
+     */
 	public function run()
 	{
 		//Получить строку запроса
@@ -52,5 +61,6 @@ Class Router
 			}
 		}
 
+        return true;
 	}
 }

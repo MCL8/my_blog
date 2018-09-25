@@ -9,6 +9,13 @@ class Pagination
     private $limit;
     private $amount;
 
+    /**
+     * Pagination constructor.
+     * @param $total
+     * @param $currentPage
+     * @param $limit
+     * @param $index
+     */
     public function __construct($total, $currentPage, $limit, $index)
     {
         $this->total = $total;
@@ -19,6 +26,9 @@ class Pagination
 
     }
 
+    /**
+     * @return string
+     */
     public function get()
     {
         $links = null;
@@ -49,6 +59,11 @@ class Pagination
         return $html;
     }
 
+    /**
+     * @param $page
+     * @param null $text
+     * @return string
+     */
     private function generateHtml($page, $text = null)
     {
         if (!$text) {
@@ -61,6 +76,9 @@ class Pagination
         return '<li><a href="' . $currentURI . $this->index . $page . '">' . $text . '</a></li>';
     }
 
+    /**
+     * @return array
+     */
     private function limits()
     {
         $left = $this->current_page - round($this->max / 2);
@@ -76,6 +94,9 @@ class Pagination
         return array($start, $end);
     }
 
+    /**
+     * @param $currentPage
+     */
     private function setCurrentPage($currentPage)
     {
         $this->current_page = $currentPage;
@@ -89,6 +110,9 @@ class Pagination
         }
     }
 
+    /**
+     * @return float
+     */
     private function amount()
     {
         return ceil($this->total / $this->limit);

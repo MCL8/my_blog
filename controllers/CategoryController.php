@@ -1,6 +1,11 @@
 <?php
 class CategoryController
 {
+    /**
+     * @param $category_id
+     * @param int $page
+     * @return bool
+     */
     public function actionShow($category_id, $page = 1)
     {
         $categoryName = Category::getCategoryById($category_id)['name'];

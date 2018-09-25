@@ -1,6 +1,9 @@
 <?php
 class AdminController extends AdminBase
 {
+    /**
+     * @return bool
+     */
     public function actionIndex()
     {
         self::checkAdmin();
