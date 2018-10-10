@@ -4,7 +4,9 @@
         <div class="container">
             <div class="main__content">
                 <div class="articles-block" id="articles_recent">
-                    <h1>Категория: <?php echo $categoryName; ?></h1>
+                    <div class="title">
+                        <h1>Категория: <?php echo $categoryName; ?></h1>
+                    </div>
                     <div class="category-content">
                         <?php foreach ($categoryContent as $article): ?>
                             <article class="article">

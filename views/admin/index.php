@@ -1,26 +1,28 @@
 <?php include ROOT . '/views/layouts/header_admin.php'; ?>
 
-    <section>
-        <div class="container">
-            <div class="row">
+    <div class="content">
+        <main>
+            <div class="container">
+                <div class="container-block">
+                    <div class="admin-panel">
+                        <br/>
 
-                <br/>
+                        <h4>Добрый день, администратор!</h4>
 
-                <h4>Добрый день, администратор!</h4>
+                        <br/>
 
-                <br/>
+                        <p>Вам доступны такие возможности:</p>
 
-                <p>Вам доступны такие возможности:</p>
+                        <br/>
 
-                <br/>
-
-                <ul>
-                    <li><a href="/admin/article">Управление статьями</a></li>
-                    <li><a href="/admin/category">Управление категориями</a></li>
-                </ul>
-
+                        <ul>
+                            <li><a href="/admin/article">Управление статьями</a></li>
+                            <li><a href="/admin/category">Управление категориями</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </main>
+    </div>
 
 <?php include ROOT . '/views/layouts/footer.php'; ?>

@@ -16,7 +16,7 @@ class Pagination
      * @param $limit
      * @param $index
      */
-    public function __construct($total, $currentPage, $limit, $index)
+    public function __construct(int $total, int $currentPage, int $limit, string $index)
     {
         $this->total = $total;
         $this->limit = $limit;
@@ -64,7 +64,7 @@ class Pagination
      * @param null $text
      * @return string
      */
-    private function generateHtml($page, $text = null)
+    private function generateHtml(int $page, string $text = null)
     {
         if (!$text) {
             $text = $page;
@@ -97,7 +97,7 @@ class Pagination
     /**
      * @param $currentPage
      */
-    private function setCurrentPage($currentPage)
+    private function setCurrentPage(int $currentPage)
     {
         $this->current_page = $currentPage;
 

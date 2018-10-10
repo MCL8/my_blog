@@ -1,31 +1,31 @@
 <?php include ROOT . '/views/layouts/header_admin.php'; ?>
 
-    <section>
+<div class="content">
+    <main>
         <div class="container">
-            <div class="row">
-                <br/>
-                <div class="breadcrumbs">
-                    <ol class="breadcrumb">
-                        <li><a href="/admin">Панель администратора</a></li>
-                        <li><a href="/admin/article">Управление статьями</a></li>
-                        <li class="active">Редактировать статью</li>
-                    </ol>
-                </div>
+            <div class="container-block">
+                <div class="admin-panel">
+                    <br/>
+                    <div class="breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li><a href="/admin">Админпанель</a></li>
+                            <li><a href="/admin/article">Управление статьями</a></li>
+                            <li class="active">Редактировать статью</li>
+                        </ul>
+                    </div>
+                    <br/>
+                    <h4>Редактировать статью #<?php echo $id; ?></h4>
+                    <br/>
 
-                <h4>Редактировать статью #<?php echo $id; ?></h4>
+                    <?php if (isset($errors) && is_array($errors)): ?>
+                        <ul>
+                            <?php foreach ($errors as $error): ?>
+                                <li> - <?php echo $error; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
 
-                <br/>
-
-                <?php if (isset($errors) && is_array($errors)): ?>
-                    <ul>
-                        <?php foreach ($errors as $error): ?>
-                            <li> - <?php echo $error; ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endif; ?>
-
-                <div class="col-lg-4">
-                    <div class="login-form">
+                    <div class="admin-form">
                         <form action="#" method="post" enctype="multipart/form-data">
 
                             <p>Заголовок статьи</p>
@@ -65,6 +65,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </main>
+</div>
 
 <?php include ROOT . '/views/layouts/footer.php'; ?>

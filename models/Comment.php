@@ -7,7 +7,7 @@ class Comment
      * @param $article_id
      * @return array
      */
-    public static function getCommentsList($article_id)
+    public static function getCommentsList(int $article_id)
     {
         $article_id = intval($article_id);
 
@@ -25,7 +25,7 @@ class Comment
      * @param $comment_text
      * @return bool
      */
-    public static function addComment($article_id, $author_name, $email, $comment_text)
+    public static function addComment(int $article_id, string $author_name, string $email, string $comment_text)
     {
         if (strlen($comment_text) > 0) {
             $db = DB::getConnection();

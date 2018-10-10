@@ -1,5 +1,5 @@
 <div>
-<button id="scroller"></button>
+    <button id="scroller"></button>
 </div>
 <footer>
     <a href="index.html">

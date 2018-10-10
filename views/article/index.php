@@ -8,6 +8,13 @@
                     <div class="article__header">
                         <h1><?php echo $article['title'];?></h1>
                     </div>
+                    <div class="article__info">
+                        <span class="article__pubdate"><?php echo $article['pubdate'];?></span>
+
+                        <?php include ROOT . '/views/layouts/icons/views_icon.php'; ?>
+
+                        <span class="article__views"><?php echo $article['views_count'];?></span>
+                    </div>
                     <img src="https://picsum.photos/500/400" alt="">
                     <?php echo $article['content'] ;?>
                 </div>

@@ -1,43 +1,42 @@
 <?php include ROOT . '/views/layouts/header_admin.php'; ?>
 
-    <section>
+<div class="content">
+    <main>
         <div class="container">
-            <div class="row">
-                <br/>
-                <div class="breadcrumbs">
-                    <ol class="breadcrumb">
-                        <li><a href="/admin">Панель администратора</a></li>
-                        <li><a href="/admin/category">Управление категориями</a></li>
-                        <li class="active">Редактировать категорию</li>
-                    </ol>
-                </div>
+            <div class="container-block">
+                <div class="admin-panel">
+                    <br/>
+                    <div class="breadcrumbs">
+                        <ul class="breadcrumb">
+                            <li><a href="/admin">Админпанель</a></li>
+                            <li><a href="/admin/category">Управление категориями</a></li>
+                            <li class="active">Редактировать статью</li>
+                        </ul>
+                    </div>
+                    <br/>
+                    <h4>Редактировать статью #<?php echo $id; ?></h4>
+                    <br/>
 
-                <h4>Редактировать категорию "<?php echo $category['name']; ?>"</h4>
-                <br/>
+                        <?php if (isset($errors) && is_array($errors)): ?>
+                            <ul>
+                                <?php foreach ($errors as $error): ?>
+                                    <li> - <?php echo $error; ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
 
-                <?php if (isset($errors) && is_array($errors)): ?>
-                    <ul>
-                        <?php foreach ($errors as $error): ?>
-                            <li> - <?php echo $error; ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endif; ?>
-
-                <div class="col-lg-4">
-                    <div class="login-form">
+                    <div class="admin-form">
                         <form action="#" method="post">
-
                             <p>Название</p>
                             <input type="text" name="name" placeholder="" value="<?php echo $category['name']; ?>">
-
                             <br><br>
-
                             <input type="submit" name="submit" class="btn btn-default" value="Сохранить">
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
+</div>
 
 <?php include ROOT . '/views/layouts/footer.php'; ?>

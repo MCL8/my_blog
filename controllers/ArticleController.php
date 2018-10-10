@@ -6,7 +6,7 @@ class ArticleController
      * @param $article_id
      * @return bool
      */
-    public function actionShow($article_id)
+    public function actionShow(int $article_id)
     {
         if (isset($_POST['submit'])) {
             if (isset($_SESSION['user'])) {
@@ -24,6 +24,9 @@ class ArticleController
 
         $article = Article::getArticleById($article_id);
         $commentsList = Comment::getCommentsList($article_id);
+
+        $date = new DateTime($article['pubdate']);
+        $article['pubdate'] = $date->format('d.m.Y H:i');
 
         Article::increaseViews($article_id);
 

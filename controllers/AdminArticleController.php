@@ -60,7 +60,7 @@ class AdminArticleController extends AdminBase
      * @param $id
      * @return bool
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id)
     {
         self::checkAdmin();
 
@@ -103,7 +103,7 @@ class AdminArticleController extends AdminBase
      * @param $id
      * @return bool
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id)
     {
         self::checkAdmin();
 

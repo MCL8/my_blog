@@ -8,7 +8,7 @@ class User
      * @param $password
      * @return bool
      */
-    public static function register($name, $email, $password)
+    public static function register(string $name, string $email, string $password)
     {
         $db = DB::getConnection();
 
@@ -29,7 +29,7 @@ class User
      * @param $password
      * @return bool
      */
-    public static function edit($id, $name, $password)
+    public static function edit(int $id, string $name, string $password)
     {
         $db = DB::getConnection();
 
@@ -51,7 +51,7 @@ class User
      * @param $password
      * @return bool
      */
-    public static function checkUserData($email, $password)
+    public static function checkUserData(string $email, string $password)
     {
         $db = DB::getConnection();
 
@@ -103,7 +103,7 @@ class User
      * @param $name
      * @return bool
      */
-    public static function checkName($name)
+    public static function checkName(string $name)
     {
         if (strlen($name) >= 2) {
             return true;
@@ -115,7 +115,7 @@ class User
      * @param $password
      * @return bool
      */
-    public static function checkPassword($password)
+    public static function checkPassword(string $password)
     {
         if (strlen($password) >= 6) {
             return true;
@@ -127,7 +127,7 @@ class User
      * @param $email
      * @return bool
      */
-    public static function checkEmail($email)
+    public static function checkEmail(string $email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;
@@ -139,7 +139,7 @@ class User
      * @param $email
      * @return bool
      */
-    public static function checkEmailExists($email)
+    public static function checkEmailExists(string $email)
     {
         $db = Db::getConnection();
 
@@ -156,10 +156,22 @@ class User
     }
 
     /**
+     * @return mixed|null
+     */
+    public static function getCurrentUser()
+    {
+        if (isset($_SESSION['user'])) {
+            return self::getUserById($_SESSION['user']);
+        }
+
+        return null;
+    }
+
+    /**
      * @param $id
      * @return mixed
      */
-    public static function getUserById($id)
+    public static function getUserById(int $id)
     {
         $db = Db::getConnection();
 

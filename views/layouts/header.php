@@ -8,8 +8,8 @@
     <script src="/template/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+<div class="wrapper">
 <header>
-    <div class="wrapper">
     <div class="header__top">
         <div class="container">
             <a href="/">
@@ -21,7 +21,7 @@
                     <?php if (User::isGuest()): ?>
                         <li><a class="header__link" href="/user/login/">ВОЙТИ</a></li>
                     <?php else: ?>
-                        <li><a class="header__link" href="/user/logout/">ВЫХОД</a></li>
+                        <li><a class="header__link" href="/user/logout/">ВЫХОД (<?php echo User::getCurrentUser()['name']?>)</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>

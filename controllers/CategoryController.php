@@ -6,7 +6,7 @@ class CategoryController
      * @param int $page
      * @return bool
      */
-    public function actionShow($category_id, $page = 1)
+    public function actionShow(int $category_id, int $page = 1)
     {
         $categoryName = Category::getCategoryById($category_id)['name'];
         $categoryContent = Article::getArticlesListByCategoryId($category_id, $page);

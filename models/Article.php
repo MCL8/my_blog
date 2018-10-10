@@ -9,7 +9,7 @@ Class Article
      * @param $id
      * @return mixed
      */
-    public static function getArticleById($id)
+    public static function getArticleById(int $id)
     {
         $id = intval($id);
 
@@ -31,7 +31,7 @@ Class Article
      * @param int $offset
      * @return array
      */
-    public static function getArticlesList($limit = self::ARTICLES_LIMIT, $orderby = "id", $offset = 0)
+    public static function getArticlesList(int $limit = self::ARTICLES_LIMIT, string $orderby = "id", int $offset = 0)
     {
         $orders = array("id", "views_count", "rating");
         $key = array_search($orderby, $orders);
@@ -88,7 +88,7 @@ Class Article
      * @param int $page
      * @return array
      */
-    public static function getArticlesListByCategoryId($category_id, $page = 1)
+    public static function getArticlesListByCategoryId(int $category_id, int $page = 1)
     {
         $limit = self::SHOW_IN_CATEGORY;
         $offset = ($page - 1) * $limit;
@@ -114,7 +114,7 @@ Class Article
      * @param int $count
      * @return array
      */
-    public static function getRandomList($count = self::ARTICLES_LIMIT)
+    public static function getRandomList(int $count = self::ARTICLES_LIMIT)
     {
         $db = DB::getConnection();
 
@@ -139,7 +139,7 @@ Class Article
      * @param $post_data
      * @return int|string
      */
-    public static function createArticle($post_data)
+    public static function createArticle(array $post_data)
     {
         $db = DB::getConnection();
 
@@ -164,7 +164,7 @@ Class Article
      * @param $post_data
      * @return bool
      */
-    public static function updateArticle($id, $post_data)
+    public static function updateArticle(int $id, array $post_data)
     {
         $db = DB::getConnection();
 
@@ -186,7 +186,7 @@ Class Article
      * @param $id
      * @return bool
      */
-    public static function deleteArticle($id)
+    public static function deleteArticle(int $id)
     {
         $db = DB::getConnection();
 
@@ -202,7 +202,7 @@ Class Article
      * @param $id
      * @return string
      */
-    public static function getImage($id)
+    public static function getImage(int $id)
     {
         $noImage = 'noimage.png';
 
@@ -221,7 +221,7 @@ Class Article
      * @param $id
      * @return bool
      */
-    public static function increaseViews($id)
+    public static function increaseViews(int $id)
     {
         $db = DB::getConnection();
 
@@ -240,7 +240,7 @@ Class Article
      * @param $category_id
      * @return mixed
      */
-    public static function getArticlesCountInCategory($category_id)
+    public static function getArticlesCountInCategory(int $category_id)
     {
         $db = DB::getConnection();
 
@@ -257,7 +257,7 @@ Class Article
     /**
      * @param $articlesList
      */
-    private static function getCategoriesName(&$articlesList)
+    private static function getCategoriesName(array &$articlesList)
     {
         $i = 0;
         $categories = Category::getCategoriesList();
@@ -277,7 +277,7 @@ Class Article
      * @param $range
      * @return array|bool
      */
-    private static function getRandomArray($count, $range) {
+    private static function getRandomArray(int $count, int $range) {
 
         if (($count <= 0) || ($range <= 0)) {
             return false;
