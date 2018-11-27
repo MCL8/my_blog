@@ -152,6 +152,7 @@ class User
         if ($queryResult->fetchColumn()) {
             return true;
         }
+
         return false;
     }
 

@@ -11,7 +11,10 @@
 
                 <?php include ROOT . '/views/layouts/articles_block.php'; ?>
 
-                <button id="btn_<?php echo $block['id']?>">Загрузить еще</button>
+                <div class="btn-load text-center">
+                    <button id="btn_<?php echo $block['id']?>" class="btn-load">Загрузить еще</button>
+                </div>
+
             </div>
         <?php endforeach; ?>
     </div>

@@ -66,36 +66,41 @@ class AdminArticleController extends AdminBase
 
         $categoriesList = Category::getCategoriesList();
         $article = Article::getArticleById($id);
-        $article['image'] = Article::getImage($id);
 
-        if (isset($_POST['submit'])) {
-            $post_data['title'] = $_POST['title'];
-            $post_data['category_id'] = $_POST['category_id'];
-            $post_data['preview_text'] = $_POST['preview_text'];
-            $post_data['content'] = $_POST['content'];
+        if ($article) {
+            $article['image'] = Article::getImage($id);
 
-            $errors = false;
+            if (isset($_POST['submit'])) {
+                $post_data['title'] = $_POST['title'];
+                $post_data['category_id'] = $_POST['category_id'];
+                $post_data['preview_text'] = $_POST['preview_text'];
+                $post_data['content'] = $_POST['content'];
 
-            foreach ($post_data as $field) {
-                if (!isset($field) || empty($field)) {
-                    $errors[] = 'Заполните поля';
-                    break;
-                }
-            }
+                $errors = false;
 
-            if ($errors == false) {
-                if (Article::updateArticle($id, $post_data)) {
-                    if (is_uploaded_file($_FILES['image']['tmp_name'])) {
-                        move_uploaded_file($_FILES['image']['tmp_name'],
-                            $_SERVER['DOCUMENT_ROOT'] . "/upload/images/articles/{$id}.jpg");
+                foreach ($post_data as $field) {
+                    if (!isset($field) || empty($field)) {
+                        $errors[] = 'Заполните поля';
+                        break;
                     }
+                }
 
-                    header("Location: /admin/article");
+                if ($errors == false) {
+                    if (Article::updateArticle($id, $post_data)) {
+                        if (is_uploaded_file($_FILES['image']['tmp_name'])) {
+                            move_uploaded_file($_FILES['image']['tmp_name'],
+                                $_SERVER['DOCUMENT_ROOT'] . "/upload/images/articles/{$id}.jpg");
+                        }
+
+                        header("Location: /admin/article");
+                    }
                 }
             }
-        }
 
-        require_once(ROOT . '/views/admin_article/update.php');
+            require_once(ROOT . '/views/admin_article/update.php');
+        } else {
+            header("HTTP/1.0 404 Not Found");
+        }
         return true;
     }
 

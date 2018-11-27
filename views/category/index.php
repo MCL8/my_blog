@@ -11,7 +11,9 @@
                         <?php foreach ($categoryContent as $article): ?>
                             <article class="article">
                                 <a href="/article/<?php echo $article['id']?>">
-                                    <img src="https://picsum.photos/360/240" alt="">
+                                    <div class="text-center">
+                                        <img src="<?php echo Article::getImage($article['id']);?>" alt="<?php echo $article['title']; ?>">
+                                    </div>
                                     <h1><?php echo $article['title']; ?></h1>
                                 </a>
                                 <p><?php echo $article['preview_text']; ?></p>

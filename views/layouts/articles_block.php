@@ -2,7 +2,9 @@
     <?php foreach ($block['list'] as $article): ?>
         <article class="article">
             <a href="/article/<?php echo $article['id']?>">
-                <img src="<?php echo Article::getImage($article['id']);?>" alt="">
+                <div class="text-center">
+                    <img src="<?php echo Article::getImage($article['id']);?>" alt="<?php echo $article['title']; ?>">
+                </div>
                 <h1>
                     <?php echo $article['title']; ?>
                 </h1>

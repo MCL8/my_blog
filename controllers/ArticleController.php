@@ -23,14 +23,19 @@ class ArticleController
         }
 
         $article = Article::getArticleById($article_id);
-        $commentsList = Comment::getCommentsList($article_id);
 
-        $date = new DateTime($article['pubdate']);
-        $article['pubdate'] = $date->format('d.m.Y H:i');
+        if ($article) {
+            $commentsList = Comment::getCommentsList($article_id);
 
-        Article::increaseViews($article_id);
+            $date = new DateTime($article['pubdate']);
+            $article['pubdate'] = $date->format('d.m.Y H:i');
 
-        require_once(ROOT . '/views/article/index.php');
+            Article::increaseViews($article_id);
+
+            require_once(ROOT . '/views/article/index.php');
+        } else {
+            header("HTTP/1.0 404 Not Found");
+        }
 
         return true;
     }

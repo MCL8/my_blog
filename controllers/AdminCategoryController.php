@@ -52,23 +52,29 @@ class AdminCategoryController extends AdminBase
 
         $category = Category::getCategoryById($id);
 
-        if (isset($_POST['submit'])) {
-            $name = $_POST['name'];
 
-            $errors = false;
+        if ($category) {
+            if (isset($_POST['submit'])) {
+                $name = $_POST['name'];
 
-            if (!isset($name) || empty($name)) {
-                $errors[] = 'Заполните поля';
+                $errors = false;
+
+                if (!isset($name) || empty($name)) {
+                    $errors[] = 'Заполните поля';
+                }
+
+                if ($errors == false) {
+                    Category::updateCategory($id, $name);
+
+                    header("Location: /admin/category");
+                }
             }
 
-            if ($errors == false) {
-                Category::updateCategory($id, $name);
-
-                header("Location: /admin/category");
-            }
+            require_once(ROOT . '/views/admin_category/update.php');
+        } else {
+            header("HTTP/1.0 404 Not Found");
         }
 
-        require_once (ROOT . '/views/admin_category/update.php');
         return true;
     }
 
