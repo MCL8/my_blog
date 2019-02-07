@@ -23,7 +23,6 @@ class Pagination
         $this->index = $index;
         $this->amount = $this->amount();
         $this->setCurrentPage($currentPage);
-
     }
 
     /**
@@ -60,8 +59,8 @@ class Pagination
     }
 
     /**
-     * @param $page
-     * @param null $text
+     * @param int $page
+     * @param string|null $text
      * @return string
      */
     private function generateHtml(int $page, string $text = null)

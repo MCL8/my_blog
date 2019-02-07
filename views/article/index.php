@@ -21,7 +21,7 @@
                 <div class="comments-block">
                     <h2>Комментарии (<?php echo count($commentsList); ?>)</h2>
                     <?php foreach ($commentsList as $comment): ?>
-                        <div class="comment">
+                        <div class="comment row">
                             <div class="avatar">
                                 <img src="https://picsum.photos/128/128" alt="">
                             </div>

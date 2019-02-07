@@ -18,11 +18,13 @@
                     <br/>
 
                 <?php if (isset($errors) && is_array($errors)): ?>
-                    <ul>
-                        <?php foreach ($errors as $error): ?>
-                            <li> - <?php echo $error; ?></li>
-                        <?php endforeach; ?>
-                    </ul>
+                    <div class="error-list">
+                        <ul>
+                            <?php foreach ($errors as $error): ?>
+                                <li> - <?php echo $error; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                 <?php endif; ?>
 
                     <div class="admin-form">

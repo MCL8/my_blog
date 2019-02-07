@@ -17,7 +17,7 @@
             </a>
             <nav>
                 <ul class="main-menu">
-                    <li><a class="header__link" href="#">ОБ АВТОРЕ</a></li>
+                    <li><a class="header__link" href="/about/">ОБ АВТОРЕ</a></li>
                     <?php if (User::isGuest()): ?>
                         <li><a class="header__link" href="/user/login/">ВОЙТИ</a></li>
                     <?php else: ?>

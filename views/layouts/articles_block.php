@@ -1,4 +1,5 @@
 <div class="articles__content">
+    <div class="row">
     <?php foreach ($block['list'] as $article): ?>
         <article class="article">
             <a href="/article/<?php echo $article['id']?>">
@@ -17,4 +18,5 @@
             </p>
         </article>
     <?php endforeach; ?>
+    </div>
 </div>

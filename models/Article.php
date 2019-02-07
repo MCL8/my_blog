@@ -3,7 +3,7 @@
 Class Article
 {
     const ARTICLES_LIMIT = 3;
-    const SHOW_IN_CATEGORY = 2;
+    const SHOW_IN_CATEGORY = 6;
 
     /**
      * @param $id
@@ -44,21 +44,19 @@ Class Article
 
         $db = DB::getConnection();
 
-        $sql = 'SELECT id, title, preview_text, category_id, pubdate ' .
-             'FROM articles ' .
+        $sql = 'SELECT articles.id, title, preview_text, category_id, pubdate, categories.name AS category_name ' .
+             'FROM articles JOIN categories ' .
              'ORDER BY ' . $order . ' DESC ' .
              'LIMIT :limit ' .
              'OFFSET :offset';
 
-
         $queryResult = $db->prepare($sql);
+
         $queryResult->bindParam(':limit', $limit, PDO::PARAM_INT);
         $queryResult->bindParam(':offset', $offset, PDO::PARAM_INT);
         $queryResult->execute();
 
         $articlesList = $queryResult->fetchAll();
-
-        self::getCategoriesName($articlesList);
 
         return $articlesList;
     }
@@ -70,15 +68,13 @@ Class Article
     {
         $db = DB::getConnection();
 
-        $sql = 'SELECT id, title, category_id ' .
-               'FROM articles ' .
+        $sql = 'SELECT articles.id, title, category_id, categories.name AS category_name ' .
+               'FROM articles JOIN categories' .
                'ORDER BY id DESC';
 
         $queryResult = $db->query($sql);
 
         $articlesList = $queryResult->fetchAll();
-
-        self::getCategoriesName($articlesList);
 
         return $articlesList;
     }
@@ -101,6 +97,7 @@ Class Article
                'ORDER BY id DESC LIMIT :limit OFFSET :offset';
 
         $queryResult = $db->prepare($sql);
+
         $queryResult->bindParam(':category_id', $category_id, PDO::PARAM_INT);
         $queryResult->bindParam(':limit', $limit, PDO::PARAM_INT);
         $queryResult->bindParam(':offset', $offset, PDO::PARAM_INT);
@@ -252,24 +249,6 @@ Class Article
 
         $row = $queryResult->fetch();
         return $row['count'];
-    }
-
-    /**
-     * @param $articlesList
-     */
-    private static function getCategoriesName(array &$articlesList)
-    {
-        $i = 0;
-        $categories = Category::getCategoriesList();
-        foreach ($articlesList as $row) {
-            foreach ($categories as $cat){
-                if ($cat['id'] == $row['category_id']){
-                    $articlesList[$i]['category_name'] = $cat['name'];
-                    break;
-                }
-            }
-            $i++;
-        }
     }
 
     /**

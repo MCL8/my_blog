@@ -1,6 +1,6 @@
 <?php
 
-require_once ROOT . '/config/db_params.php';
+require_once 'W:/domains/my_blog/config/db_config.php';
 
 class DB{
 
@@ -9,8 +9,8 @@ class DB{
      */
     public static function getConnection()
     {
-        $paramsPath = ROOT . '/config/db_params.php';
-        $params = include($paramsPath);
+        $configPath = 'W:/domains/my_blog/config/db_config.php';
+        $params = include($configPath);
 
         $dsn = "mysql:host={$params['host']};dbname={$params['dbname']}";
         $opt = array(

@@ -11,6 +11,8 @@ return array(
     'user/login' => 'user/login',
     'user/logout' => 'user/logout',
 
+    'about' => 'about/index',
+
     'admin/article/create' => 'adminArticle/create',
     'admin/article/update/([0-9]+)' => 'adminArticle/update/$1',
     'admin/article/delete/([0-9]+)' => 'adminArticle/delete/$1',

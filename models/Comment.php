@@ -27,20 +27,23 @@ class Comment
      */
     public static function addComment(int $article_id, string $author_name, string $email, string $comment_text)
     {
-        if (strlen($comment_text) > 0) {
-            $db = DB::getConnection();
-
-            $sql = 'INSERT INTO comments(article_id, author_name, email, comment_text, created_at) ' .
-                'VALUES (:article_id, :author_name, :email, :comment_text, NOW())';
-
-            $queryResult = $db->prepare($sql);
-            $queryResult->bindParam(':article_id', $article_id, PDO::PARAM_INT);
-            $queryResult->bindParam(':author_name', $author_name, PDO::PARAM_STR);
-            $queryResult->bindParam(':email', $email, PDO::PARAM_STR);
-            $queryResult->bindParam(':comment_text', $comment_text, PDO::PARAM_STR);
-
-            return $queryResult->execute();
+        if (strlen($comment_text) == 0) {
+            return false;
         }
-        return false;
+
+        $db = DB::getConnection();
+
+        $comment_text = htmlspecialchars($comment_text);
+
+        $sql = 'INSERT INTO comments(article_id, author_name, email, comment_text, created_at) ' .
+            'VALUES (:article_id, :author_name, :email, :comment_text, NOW())';
+
+        $queryResult = $db->prepare($sql);
+        $queryResult->bindParam(':article_id', $article_id, PDO::PARAM_INT);
+        $queryResult->bindParam(':author_name', $author_name, PDO::PARAM_STR);
+        $queryResult->bindParam(':email', $email, PDO::PARAM_STR);
+        $queryResult->bindParam(':comment_text', $comment_text, PDO::PARAM_STR);
+
+        return $queryResult->execute();
     }
 }

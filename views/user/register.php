@@ -7,15 +7,17 @@
             <p>Вы зарегистрированы!</p>
         <?php else: ?>
             <?php if (isset($errors) && is_array($errors)): ?>
-                <ul>
-                    <?php foreach ($errors as $error): ?>
-                        <li> - <?php echo $error; ?></li>
-                    <?php endforeach; ?>
-                </ul>
+                <div class="error-list">
+                    <ul>
+                        <?php foreach ($errors as $error): ?>
+                            <li> - <?php echo $error; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
             <?php endif; ?>
 
             <h2>РЕГИСТРАЦИЯ</h2>
-            <form action="#" method="post">
+            <form action="" method="post">
                 <input type="text" name="name" placeholder="Ваше имя">
                 <input type="email" name="email" placeholder="Ваш Email">
                 <input type="password" name="password" placeholder="Ваш пароль">

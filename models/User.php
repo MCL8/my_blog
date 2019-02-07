@@ -12,6 +12,9 @@ class User
     {
         $db = DB::getConnection();
 
+        $name = trim($name);
+        $name = htmlspecialchars($name);
+
         $sql = 'INSERT INTO users (name, email, password) ' .
                'VALUES (:name, :email, :password)';
 
@@ -32,6 +35,9 @@ class User
     public static function edit(int $id, string $name, string $password)
     {
         $db = DB::getConnection();
+
+        $name = trim($name);
+        $name = htmlspecialchars($name);
 
         $sql = 'UPDATE users ' .
                'SET name = :name, password = :password ' .
