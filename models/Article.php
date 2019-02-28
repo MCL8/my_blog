@@ -45,7 +45,7 @@ Class Article
         $db = DB::getConnection();
 
         $sql = 'SELECT articles.id, title, preview_text, category_id, pubdate, categories.name AS category_name ' .
-             'FROM articles JOIN categories ' .
+             'FROM articles JOIN categories ON categories.id = category_id ' .
              'ORDER BY ' . $order . ' DESC ' .
              'LIMIT :limit ' .
              'OFFSET :offset';
@@ -201,17 +201,15 @@ Class Article
      */
     public static function getImage(int $id)
     {
-        $noImage = 'noimage.png';
+        $noImage = '/template/images/noimage.png';
 
-        $path = '/upload/images/articles/';
-
-        $pathToArticleImage = $path . $id . '.jpg';
+        $pathToArticleImage = '/upload/images/articles/' . $id . '.jpg';
 
         if (file_exists($_SERVER['DOCUMENT_ROOT'].$pathToArticleImage)) {
             return $pathToArticleImage;
         }
 
-        return $path . $noImage;
+        return $noImage;
     }
 
     /**
