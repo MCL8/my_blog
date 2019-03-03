@@ -1,0 +1,59 @@
+.admin-panel {
+	background: #fff;
+	padding: 40px 30px;
+	margin-bottom: 50px;
+	p {
+		padding: 10px 0;
+	}
+	ul {
+		display: block;
+	}
+	li {
+		padding: 2px 0;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
+	h2 {
+		font-size: 20px;
+		margin-bottom: 30px;
+	}
+	form input, textarea {
+		display: block;
+		font-size: 14px;
+		width: 600px;
+		max-width: 100%;
+		padding: 10px;
+	}
+	form textarea {
+		height: 400px;
+		margin: 10px 0;
+		padding: 10px;
+	}
+	form input[type="file"] {
+		padding: 8px 0;
+	}
+	form input[type="submit"] {
+		width: 624px;
+	}
+	form span {
+		line-height: 25px;
+	}
+	form span input {
+		width: 15px;
+		float: left;
+		height: 15px;
+		margin-right: 5px;
+	}
+	label input {
+		border: medium none;
+		display: inline-block;
+		height: 0;
+		margin-bottom: 0;
+		outline: medium none;
+		padding-left: 0;
+	}
+	select {
+		padding: 5px;
+	}
+}

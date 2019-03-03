@@ -1,0 +1,40 @@
+.pagination {
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 25px;
+	margin-top: 20px;
+	padding-left: 30px;
+	li:first-child  a, li:first-child  span {
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 0;
+		margin-left: 0;
+	}
+	li:last-child  a, li:last-child  span {
+		border-bottom-right-radius: 0;
+		border-top-right-radius: 0;
+	}
+	.active  a, .pagination  .active  span, .active  a:hover, .pagination  .active  span:hover, .active  a:focus, .active  span:focus {
+		background-color: #468fb0;
+		border-color: #468fb0;
+		color: #fff;
+		cursor: default;
+		z-index: 2;
+	}
+	li  a, li  span {
+		background-color: #f0f0e9;
+		border: 0;
+		float: left;
+		line-height: 1.42857;
+		margin-left: -1px;
+		padding: 6px 12px;
+		position: relative;
+		text-decoration: none;
+		margin-right: 5px;
+		color:#000;
+	}
+	li  a:hover{
+		background:#468fb0;
+		color:#fff;
+	}
+}
+
